@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://cih5u7otcoipp"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_bvyaq"]
+[ext_resource type="Script" path="res://Radio.gd" id="2_408v3"]
+[ext_resource type="Texture2D" uid="uid://lydc5hcwvc15" path="res://assets/sprites/radio.png" id="3_ssi8e"]
+[ext_resource type="Script" path="res://AudioEmitter.gd" id="4_4bkqa"]
+[ext_resource type="Script" path="res://MessageHandler.gd" id="4_l1r83"]
+[ext_resource type="Script" path="res://Debug.gd" id="5_uurl5"]
+[ext_resource type="Theme" uid="uid://oedsc6r2ytcs" path="res://default_theme.tres" id="6_nrtnr"]
+[ext_resource type="Script" path="res://Line2D.gd" id="8_eo8pe"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bvyaq")
+
+[node name="Radio" type="Node2D" parent="."]
+script = ExtResource("2_408v3")
+
+[node name="Sprite" type="Sprite2D" parent="Radio"]
+texture = ExtResource("3_ssi8e")
+centered = false
+
+[node name="MessageHandler" type="Node2D" parent="."]
+script = ExtResource("4_l1r83")
+
+[node name="ConnectionPing" type="Timer" parent="MessageHandler"]
+wait_time = 5.0
+autostart = true
+
+[node name="AudioEmitter" type="Node2D" parent="."]
+script = ExtResource("4_4bkqa")
+
+[node name="Channel1" type="AudioStreamPlayer2D" parent="AudioEmitter"]
+
+[node name="Channel2" type="AudioStreamPlayer2D" parent="AudioEmitter"]
+
+[node name="Debug" type="Node2D" parent="."]
+script = ExtResource("5_uurl5")
+
+[node name="TextEdit" type="TextEdit" parent="Debug"]
+offset_left = 4.0
+offset_top = 181.0
+offset_right = 97.0
+offset_bottom = 238.0
+theme = ExtResource("6_nrtnr")
+placeholder_text = "message"
+wrap_mode = 1
+
+[node name="Button" type="Button" parent="Debug"]
+offset_left = 43.0
+offset_top = 126.0
+offset_right = 62.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="Debug"]
+offset_right = 102.0
+offset_bottom = 160.0
+theme = ExtResource("6_nrtnr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="Debug/Label"]
+wait_time = 5.0
+
+[node name="GridContainer" type="GridContainer" parent="Debug"]
+offset_left = 21.0
+offset_top = 246.0
+offset_right = 78.0
+offset_bottom = 281.0
+columns = 3
+
+[node name="Button1" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button2" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button3" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button4" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button5" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button6" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button7" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button8" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button9" type="Button" parent="Debug/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Line2D" type="Line2D" parent="Debug"]
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, 67, 103)
+width = 2.0
+sharp_limit = 100.0
+antialiased = true
+script = ExtResource("8_eo8pe")
+
+[connection signal="pressed" from="Debug/Button" to="Debug" method="_on_button_pressed"]

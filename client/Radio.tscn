@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm0po8ddehbje"]
+
+[ext_resource type="Script" path="res://Radio.gd" id="1_ju2j7"]
+[ext_resource type="Texture2D" uid="uid://lydc5hcwvc15" path="res://assets/sprites/radio.png" id="2_5jx3v"]
+
+[node name="Radio" type="Node2D"]
+script = ExtResource("1_ju2j7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_5jx3v")
+centered = false

@@ -1,9 +1,14 @@
-
 import asyncio
 import socketio
 
 
-server = socketio.AsyncServer(async_mode='asgi')
+server = socketio.AsyncServer(
+    async_mode="asgi",
+    cors_allowed_origins=[
+        "http://localhost:8000",
+        "https://admin.socket.io",
+    ],
+)
 app = socketio.ASGIApp(server)
 
 
@@ -15,6 +20,7 @@ async def current_room(sid):
         return rooms.pop()
     except IndexError:
         return await join(sid, "144.0")
+
 
 @server.event
 async def connect(sid, environ, auth):

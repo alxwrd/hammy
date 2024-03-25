@@ -1,10 +1,9 @@
 [tool.poetry]
-name = "hammy-server"
+name = "hammyws"
 version = "0.1.0"
 description = ""
 authors = ["Alex Ward <alxwrd@googlemail.com>"]
 readme = "README.md"
-packages = [{include = "hammy_server"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

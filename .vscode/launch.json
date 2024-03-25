@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Client debug",
+            "type": "godot",
+            "request": "launch",
+            "project": "${workspaceFolder}/client",
+        },
+        {
+            "name": "Server debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/hammyws",
+            "console": "integratedTerminal"
+        },
+    ]
+}

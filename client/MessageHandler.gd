@@ -2,9 +2,7 @@ extends Node2D
 
 var client: SocketIOClient
 
-
 @onready var connection_ping: Timer = $ConnectionPing
-
 
 
 func _ready():

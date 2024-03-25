@@ -4,8 +4,8 @@ var start
 var end
 var mid
 
-func _ready():
 
+func _ready():
     var curve := Curve2D.new()
     start = points[0]
     end = points[1]
@@ -13,13 +13,10 @@ func _ready():
 
     print(start.x)
 
-
-
     curve.add_point(start, Vector2(0, 0), Vector2(mid.x - start.x, 0))
     curve.add_point((end + start) / 2)
     curve.add_point(end, Vector2(mid.x - end.x, 0))
     points = curve.get_baked_points()
-
 
 
 func _draw():
@@ -28,5 +25,3 @@ func _draw():
 
     draw_circle(start + Vector2(mid.x - start.x, 0), 2, Color.GREEN)
     draw_circle(end + Vector2(mid.x - end.x, 0), 2, Color.GREEN)
-
-

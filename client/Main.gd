@@ -1,11 +1,11 @@
 extends Node2D
 
 var client = SocketIOClient
+var dragging = false
+var mouse_start = Vector2()
 
 @onready var radio = $Radio
 
-var dragging = false
-var mouse_start = Vector2()
 
 func _ready():
     get_viewport().transparent_bg = true
@@ -25,5 +25,9 @@ func _input(event):
 
     if event is InputEventMouseMotion and dragging:
         DisplayServer.window_set_position(
-            Vector2(get_tree().get_root().position) + get_viewport().get_mouse_position() - mouse_start
+            (
+                Vector2(get_tree().get_root().position)
+                + get_viewport().get_mouse_position()
+                - mouse_start
+            )
         )

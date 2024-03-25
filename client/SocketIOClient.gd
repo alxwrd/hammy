@@ -22,7 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 class_name SocketIOClient extends Node
 
 enum EngineIOPacketType {
@@ -66,9 +65,11 @@ signal on_disconnect(name_space: String)
 # triggered when socket.io event is received
 signal on_event(event_name: String, payload: Variant, name_space: String)
 
+
 func _init(url: String):
     url = _preprocess_url(url)
     _url = "%s?EIO=4&transport=websocket" % url
+
 
 func _preprocess_url(url: String) -> String:
     if not url.ends_with("/"):
@@ -79,8 +80,10 @@ func _preprocess_url(url: String) -> String:
         url = "ws" + url.erase(0, len("http"))
     return url
 
+
 func _ready():
     _client.connect_to_url(_url)
+
 
 func _process(_delta):
     _client.poll()
@@ -100,6 +103,7 @@ func _process(_delta):
         on_engine_disconnected.emit(code, reason)
         _connected = false
         set_process(false)
+
 
 func _exit_tree():
     if _client.get_ready_state() == WebSocketPeer.STATE_OPEN:
@@ -134,11 +138,13 @@ func _engineio_decode_packet(packet: String):
             _socketio_parse_packet(packetPayload)
             on_engine_message.emit(packetPayload)
 
+
 func _engineio_send_packet(type: EngineIOPacketType, payload: String = ""):
     if len(payload) == 0:
         _client.send_text("%d" % type)
     else:
         _client.send_text("%d%s" % [type, payload])
+
 
 func _socketio_parse_packet(payload: String):
     var packetType = int(payload.substr(0, 1))
@@ -183,7 +189,14 @@ func _socketio_parse_packet(payload: String):
             var eventData = data[1] if len(data) > 1 else null
             on_event.emit(eventName, eventData, name_space)
 
-func _socketio_send_packet(type: SocketIOPacketType, name_space: String, data: Variant = null, binaryData: Array[PackedByteArray] = [], ack_id: Variant = null):
+
+func _socketio_send_packet(
+    type: SocketIOPacketType,
+    name_space: String,
+    data: Variant = null,
+    binaryData: Array[PackedByteArray] = [],
+    ack_id: Variant = null
+):
     var payload = "%d" % type
     if binaryData.size() > 0:
         payload += "%d-" % binaryData.size()
@@ -199,14 +212,17 @@ func _socketio_send_packet(type: SocketIOPacketType, name_space: String, data: V
     for binary in binaryData:
         _client.put_packet(binary)
 
+
 # connect to socket.io server by namespace
 func socketio_connect(name_space: String = "/"):
     _socketio_send_packet(SocketIOPacketType.CONNECT, name_space)
+
 
 # disconnect from socket.io server by namespace
 func socketio_disconnect(name_space: String = "/"):
     _socketio_send_packet(SocketIOPacketType.DISCONNECT, name_space)
     on_disconnect.emit(name_space)
+
 
 # send event to socket.io server by namespace
 func socketio_send(event_name: String, payload: Variant = null, name_space: String = "/"):

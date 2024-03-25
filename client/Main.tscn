@@ -115,6 +115,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Line2D" type="Line2D" parent="Debug"]
+visible = false
 points = PackedVector2Array(2.08165e-12, 2.08165e-12, 67, 103)
 width = 2.0
 sharp_limit = 100.0

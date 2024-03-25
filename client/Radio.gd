@@ -7,10 +7,7 @@ var _current_channel = default_channel
 
 
 func _ready():
-    EventBus.message_handler_ready.connect(
-        func():
-            EventBus.channel_change.emit(current_channel())
-    )
+    EventBus.message_handler_ready.connect(func(): EventBus.channel_change.emit(current_channel()))
 
 
 func get_size():
@@ -19,6 +16,3 @@ func get_size():
 
 func current_channel():
     return _current_channel
-
-
-

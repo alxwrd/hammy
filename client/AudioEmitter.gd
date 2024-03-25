@@ -1,7 +1,9 @@
 extends Node2D
 
 var button_press: AudioStream = preload("res://assets/sounds/buttons/radio_talk_button_press.mp3")
-var button_release: AudioStream = preload("res://assets/sounds/buttons/radio_talk_button_release.mp3")
+var button_release: AudioStream = preload(
+    "res://assets/sounds/buttons/radio_talk_button_release.mp3"
+)
 
 var last_message_received_sound: int = -1
 var message_received: Array[AudioStream] = [
@@ -27,7 +29,9 @@ var counting = {
 }
 
 var empty_response: AudioStream = preload("res://assets/sounds/static/radio_lost_signal_clicks.mp3")
-var not_empty_response: AudioStream = preload("res://assets/sounds/beeps/radio_beeps_button_positive.mp3")
+var not_empty_response: AudioStream = preload(
+    "res://assets/sounds/beeps/radio_beeps_button_positive.mp3"
+)
 
 @onready var channel1: AudioStreamPlayer2D = $Channel1
 @onready var channel2: AudioStreamPlayer2D = $Channel2
@@ -76,6 +80,6 @@ func _on_message_sent(_message):
 func _on_chirp_received(chirp):
     if chirp == "EMPTY":
         play_sound(empty_response)
-    
+
     if chirp == "NOT_EMPTY":
         play_sound(not_empty_response)

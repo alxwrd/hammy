@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100%" height="300px" src="public/logo.svg">
+  <img width="100%" height="300px" src="site/public/logo.svg">
 </p>
 
 _Hammy is a websocket chat client with a focus on ethereal messages.  Players can

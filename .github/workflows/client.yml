@@ -66,6 +66,9 @@ jobs:
     container:
       image: barichello/godot-ci:4.2.1
     steps:
+      - run: |
+          brew install docker
+          colima start
       - name: Checkout
         uses: actions/checkout@v4
         with:

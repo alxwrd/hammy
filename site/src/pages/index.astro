@@ -1,0 +1,99 @@
+---
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Hammy</title>
+    <meta
+      name="description"
+      content="Hammy is a websocket chat client with a focus on ethereal messages"
+    />
+
+    <link rel="icon" href="/icon.svg" />
+    <link rel="canonical" href="https://hammy.chat/" />
+
+    <meta
+      name="description"
+      content="Hammy is a websocket chat client with a focus on ethereal messages"
+    />
+    <meta property="og:title" content="Hammy" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/opengraph.png" />
+    <meta property="og:url" content="https://hammy.chat/" />
+    <meta property="og:image:url" content="/opengraph.png" />
+    <meta property="og:image:alt" content="Hammy logo" />
+    <script
+      data-id="101448254"
+      src="https://clicky.hammy.chat/73903b3af688f7.js"></script>
+    <script>
+      (function () {
+        const proxied = clicky.inject;
+
+        clicky.inject = function (src, type) {
+          if (src.startsWith("/55d85cc58fc03c")) {
+            return proxied(`https://clicky.hammy.chat${src}`, type);
+          }
+
+          return proxied(src, type);
+        };
+      })();
+    </script>
+  </head>
+  <body class="bg-[#0b1428]">
+    <div class="w-full h-full">
+      <img class="mx-auto pt-20 px-6" src="logo.svg" />
+      <p
+        class="lg:w-[640px] text-justify italic mx-auto text-center font-mono text-sm md:text-md text-[#f8ea6d] px-6 pb-4"
+      >
+        Hammy is a websocket chat client with a focus on ethereal messages.
+        Players can communicate with each other if they're both online and on
+        the same frequency.
+      </p>
+      <p
+        class="mx-auto text-center font-mono text-2xl md:text-3xl text-[#f8ea6d] py-4"
+      >
+        Coming soon
+      </p>
+
+      <form
+        id="form"
+        action="https://buttondown.email/api/emails/embed-subscribe/hammy"
+        method="post"
+        target="_blank"
+        class="flex font-mono text-sm md:text-md"
+        onsubmit="document.getElementById('form').classList.add('hidden'); document.getElementById('thank-you').classList.remove('hidden');"
+      >
+        <div class="mx-auto p-6">
+          <h2 class="text-[#f8ea6d] pb-2 text-lg text-center">
+            Stay in the loop
+          </h2>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            class="h-8 rounded text-[#FF68A8] px-4 py-2"
+            required
+            placeholder="you@awesome.com"
+          />
+          <input
+            type="submit"
+            class="rounded bg-[#f8ea6d] text-[#0b1428] px-3 py-1.5"
+            value="Subscribe"
+          />
+        </div>
+      </form>
+      <div
+        id="thank-you"
+        class="text-center font-mono text-[#FF68A8] hidden py-16"
+      >
+        Thank you!
+      </div>
+    </div>
+  </body>
+</html>

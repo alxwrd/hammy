@@ -1,0 +1,50 @@
+name: Deploy ws server
+on:
+  push:
+    branches: [main]
+    paths: [ "server/**" ]
+  workflow_dispatch:
+
+jobs:
+  ruff:
+    name: Run ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chartboost/ruff-action@v1
+        with:
+            src: server/
+  test:
+    name: Test
+    needs: ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - uses: snok/install-poetry@v1
+      - uses: actions/cache@v4
+        id: cache-deps
+        with:
+          path: .venv
+          key: pydeps-${{ hashFiles('**/poetry.lock') }}
+      - run: cd server/
+      - run: poetry install --no-interaction --no-root
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+      - run: poetry install --no-interaction
+      - run: poetry run pytest
+  deploy_app:
+    name: Deploy app
+    needs: test
+    runs-on: ubuntu-latest
+    concurrency: ${{ github.workflow }}
+    # environment:
+    #   name: production
+    #   url: https://hammy.chat/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy server --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

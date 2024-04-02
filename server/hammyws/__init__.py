@@ -2,6 +2,7 @@ import asyncio
 import socketio
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 
 class OnlineUsers:
@@ -9,6 +10,13 @@ class OnlineUsers:
 
 
 api = FastAPI()
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://hammy.chat",
+    ],
+    allow_methods=["GET"],
+)
 
 
 @api.get("/count")
@@ -18,10 +26,6 @@ def count():
 
 server = socketio.AsyncServer(
     async_mode="asgi",
-    cors_allowed_origins=[
-        "http://localhost:8000",
-        "https://hammy.chat",
-    ],
 )
 
 

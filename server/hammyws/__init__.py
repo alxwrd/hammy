@@ -1,15 +1,31 @@
 import asyncio
 import socketio
 
+from fastapi import FastAPI
+
+
+class OnlineUsers:
+    count: int = 0
+
+
+api = FastAPI()
+
+
+@api.get("/count")
+def count():
+    return {"count": OnlineUsers.count}
+
 
 server = socketio.AsyncServer(
     async_mode="asgi",
     cors_allowed_origins=[
         "http://localhost:8000",
-        "https://admin.socket.io",
+        "https://hammy.chat",
     ],
 )
-app = socketio.ASGIApp(server)
+
+
+app = socketio.ASGIApp(server, api)
 
 
 async def current_room(sid):
@@ -24,11 +40,13 @@ async def current_room(sid):
 
 @server.event
 async def connect(sid, environ, auth):
+    OnlineUsers.count += 1
     print(f"[connect] from:{sid}@{environ['REMOTE_ADDR']}")
 
 
 @server.event
 async def disconnect(sid):
+    OnlineUsers.count -= 1
     print(f"[disconnect] from:{sid} - bye bye!")
 
 

@@ -1,9 +1,8 @@
 name: Deploy ws server
 on:
   push:
-    branches: [main]
+    branches: [ main ]
     paths: [ "server/**", ".github/workflows/server.yml" ]
-  workflow_dispatch:
 
 jobs:
   ruff:

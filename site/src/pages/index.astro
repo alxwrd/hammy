@@ -49,16 +49,16 @@
     <div class="w-full h-full">
       <img class="mx-auto pt-20 px-6" src="logo.svg" />
       <p
-        class="lg:w-[640px] text-justify italic mx-auto text-center font-mono text-sm md:text-md text-[#f8ea6d] px-6 pb-4"
+        class="lg:w-[640px] text-justify italic mx-auto text-center font-mono text-sm md:text-md text-[#64CFF7] px-6 pb-4"
       >
         Hammy is a websocket chat client with a focus on ethereal messages.
         Players can communicate with each other if they're both online and on
         the same frequency.
       </p>
       <p
-        class="mx-auto text-center font-mono text-2xl md:text-3xl text-[#f8ea6d] py-4"
+        class="mx-auto text-center font-mono text-2xl md:text-3xl text-[#FF68A8] py-4"
       >
-        Coming soon
+        Users online: <span id="online">0</span>
       </p>
 
       <form
@@ -70,7 +70,7 @@
         onsubmit="document.getElementById('form').classList.add('hidden'); document.getElementById('thank-you').classList.remove('hidden');"
       >
         <div class="mx-auto p-6">
-          <h2 class="text-[#f8ea6d] pb-2 text-lg text-center">
+          <h2 class="text-[#F7E752] pb-2 text-lg text-center">
             Stay in the loop
           </h2>
           <input
@@ -96,4 +96,14 @@
       </div>
     </div>
   </body>
+  <script>
+    fetch("https://hammy.fly.dev/count").then((response) => {
+      response.json().then((data) => {
+        const online = document.getElementById("online");
+        if (online) {
+          online.innerText = data.count;
+        }
+      });
+    });
+  </script>
 </html>

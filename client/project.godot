@@ -34,4 +34,4 @@ mouse_cursor/custom_image_hotspot=Vector2(4, 2)
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"

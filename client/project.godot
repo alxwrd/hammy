@@ -26,6 +26,7 @@ AudioEmitter="*res://AudioEmitter.tscn"
 
 [display]
 
+window/size/borderless=true
 window/size/always_on_top=true
 window/dpi/allow_hidpi=false
 window/per_pixel_transparency/allowed=true

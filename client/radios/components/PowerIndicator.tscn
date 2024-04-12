@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://wfbecgj828c6"]
+
+[ext_resource type="Texture2D" uid="uid://d3rrl1rtn55qn" path="res://assets/sprites/power-indicator.png" id="1_i4gmb"]
+[ext_resource type="Script" path="res://radios/components/PowerIndicator.gd" id="1_ijiub"]
+[ext_resource type="Texture2D" uid="uid://dnu1edjwwlaxm" path="res://assets/sprites/power-indicator-light.png" id="2_i6qiu"]
+
+[node name="PowerIndicator" type="Node2D"]
+script = ExtResource("1_ijiub")
+
+[node name="Light" type="Sprite2D" parent="."]
+texture = ExtResource("1_i4gmb")
+
+[node name="LightOn" type="Sprite2D" parent="."]
+texture = ExtResource("2_i6qiu")

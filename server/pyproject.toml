@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-python-socketio = "^5.10.0"
+python-socketio = {extras = ["client"], version = "^5.11.2"}
 uvicorn = "^0.29.0"
 gunicorn = "^21.2.0"
 fastapi = "^0.110.1"

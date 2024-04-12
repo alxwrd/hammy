@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcb8ynf5qaiw7"]
+
+[ext_resource type="Script" path="res://AudioEmitter.gd" id="1_en3fo"]
+
+[node name="AudioEmitter" type="Node2D"]
+script = ExtResource("1_en3fo")
+
+[node name="Channel1" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Channel2" type="AudioStreamPlayer2D" parent="."]

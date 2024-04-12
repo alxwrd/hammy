@@ -13,17 +13,24 @@ config_version=5
 config/name="Hammy"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/bg_color=Color(0.0431373, 0.0784314, 0.156863, 1)
+boot_splash/image="res://assets/Hammy logo.png"
+boot_splash/fullsize=false
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
 EventBus="*res://EventBus.gd"
+AudioEmitter="*res://AudioEmitter.tscn"
 
 [display]
 
 window/size/always_on_top=true
 window/dpi/allow_hidpi=false
 window/per_pixel_transparency/allowed=true
+mouse_cursor/custom_image="res://assets/sprites/cursors/pointer.png"
+mouse_cursor/custom_image_hotspot=Vector2(4, 2)
 
 [rendering]
 

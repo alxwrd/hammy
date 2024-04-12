@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var socket_io_server: String = "https://hammy.fly.dev/socket.io"
+
 var client: SocketIOClient
 
 @onready var connection_ping: Timer = $ConnectionPing
@@ -34,7 +36,7 @@ func _on_chirp_send():
 
 
 func establish_connection():
-    client = SocketIOClient.new("http://localhost:8000/socket.io")
+    client = SocketIOClient.new(socket_io_server)
 
     client.on_connect.connect(_on_socket_connect)
     client.on_disconnect.connect(_on_socket_disconnect)

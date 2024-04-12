@@ -11,8 +11,6 @@ func _ready():
     end = points[1]
     mid = (end + start) / 2
 
-    print(start.x)
-
     curve.add_point(start, Vector2(0, 0), Vector2(mid.x - start.x, 0))
     curve.add_point((end + start) / 2)
     curve.add_point(end, Vector2(mid.x - end.x, 0))

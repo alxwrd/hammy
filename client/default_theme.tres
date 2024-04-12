@@ -5,6 +5,5 @@ font_names = PackedStringArray("Monospace")
 
 [resource]
 default_font = SubResource("SystemFont_p01sh")
-default_font_size = 11
-Label/colors/font_outline_color = Color(0.101961, 0.101961, 0.101961, 1)
-Label/constants/outline_size = 5
+default_font_size = 14
+Label/colors/font_color = Color(0.0509804, 0.0509804, 0.0509804, 1)

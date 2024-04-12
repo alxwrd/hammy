@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyn3svh6rbcww"]
+
+[ext_resource type="Script" path="res://radios/components/SpeechBubble.gd" id="1_kmgpy"]
+[ext_resource type="Texture2D" uid="uid://c6skbq804upyv" path="res://assets/sprites/speech.png" id="2_6retp"]
+[ext_resource type="Theme" uid="uid://oedsc6r2ytcs" path="res://default_theme.tres" id="3_7vhu5"]
+
+[node name="SpeechBubble" type="Node2D"]
+script = ExtResource("1_kmgpy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 23)
+scale = Vector2(0.603896, 0.581818)
+texture = ExtResource("2_6retp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -67.0
+offset_top = -27.0
+offset_right = 66.0
+offset_bottom = 21.0
+theme = ExtResource("3_7vhu5")
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

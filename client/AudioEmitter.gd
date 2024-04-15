@@ -36,14 +36,13 @@ var sounds = {
 
 var last_message_received_sound: int = -1
 
-@onready var channel1: AudioStreamPlayer2D = $Channel1
-@onready var channel2: AudioStreamPlayer2D = $Channel2
+var channels: Array[AudioStreamPlayer2D] = []
 
 
 func _ready():
-    EventBus.message_received.connect(_on_message_received)
-    EventBus.message_send.connect(_on_message_sent)
-    EventBus.chirp_received.connect(_on_chirp_received)
+    for child in get_children():
+        if child is AudioStreamPlayer2D:
+            channels.append(child)
 
 
 func play_sound(sound):
@@ -54,7 +53,7 @@ func play_sound(sound):
 
 
 func _play_sound(sound: AudioStream):
-    for channel in [$Channel1, $Channel2]:
+    for channel in channels:
         if channel.playing:
             continue
         channel.stream = sound
@@ -69,8 +68,8 @@ func _input(event):
         play_sound("radio_talk_button_press")
 
 
-func _on_message_received(_message):
-    var message_received = [
+func message_received():
+    var message_sounds = [
         "radio_short_static_click_001",
         "radio_short_static_click_002",
         "radio_short_static_click_003",
@@ -79,23 +78,15 @@ func _on_message_received(_message):
         "radio_short_static_click_006"
     ]
 
-    var sound_choice = randi() % message_received.size()
+    var sound_choice = randi() % message_sounds.size()
 
     while sound_choice == last_message_received_sound:
-        sound_choice = randi() % message_received.size()
+        sound_choice = randi() % message_sounds.size()
 
     last_message_received_sound = sound_choice
 
-    play_sound(message_received[sound_choice])
+    play_sound(message_sounds[sound_choice])
 
 
-func _on_message_sent(_message):
+func message_sent(_message):
     play_sound("radio_talk_button_release")
-
-
-func _on_chirp_received(chirp):
-    if chirp == "EMPTY":
-        play_sound("radio_lost_signal_clicks")
-
-    if chirp == "NOT_EMPTY":
-        play_sound("radio_beeps_button_positive")

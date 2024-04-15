@@ -1,7 +1,16 @@
 extends Node2D
 
+signal on_message_handler_ready
+signal on_disconnect
+signal on_channel_changed(channel: String)
+signal on_message_delivered(message: String)
+signal on_message_received(message: String)
+
+enum State { CONNECTING, CONNECTED, DISCONNECTED }
+
 @export var socket_io_server: String = "https://hammy.fly.dev/socket.io"
 
+var state = State.DISCONNECTED
 var client: SocketIOClient
 
 @onready var connection_ping: Timer = $ConnectionPing
@@ -9,33 +18,24 @@ var client: SocketIOClient
 
 func _ready():
     establish_connection()
-
     $ConnectionPing.timeout.connect(_on_connection_ping_timeout)
 
-    EventBus.message_send.connect(_on_message_send)
-    EventBus.channel_change.connect(_on_channel_change)
-    EventBus.chirp_send.connect(_on_chirp_send)
 
-
-func _on_message_send(message):
+func send_message(message: String):
+    # TODO: Implement message buffer
     print("[sending] event:message, data:'%s'" % message)
     client.socketio_send("message", message)
-    EventBus.message_send_complete.emit(message)
+    on_message_delivered.emit(message)
 
 
-func _on_channel_change(channel):
+func change_channel(channel: String):
     print("[sending] event:channel, data:'%s'" % channel)
     client.socketio_send("join", channel)
-    EventBus.channel_change_complete.emit(channel)
-
-
-func _on_chirp_send():
-    print("[sending] event:chirp")
-    client.socketio_send("chirp")
-    EventBus.chirp_send_complete.emit()
+    on_channel_changed.emit(channel)
 
 
 func establish_connection():
+    state = State.CONNECTING
     client = SocketIOClient.new(socket_io_server)
 
     client.on_connect.connect(_on_socket_connect)
@@ -63,10 +63,12 @@ func _on_socket_connect(_payload: Variant, _name_space, error: bool):
         push_error("Failed to connect to backend!")
     else:
         print("[connect] connection established")
-    EventBus.message_handler_ready.emit()
+    state = State.CONNECTED
+    on_message_handler_ready.emit()
 
 
 func _on_socket_disconnect(_namespace: String):
+    state = State.DISCONNECTED
     print("[disconnect] lost connection")
 
 
@@ -74,7 +76,4 @@ func _on_socket_event(event: String, payload: Variant, _name_space):
     print("[receiving] event:%s, data:'%s'" % [event, payload])
 
     if event == "message":
-        EventBus.message_received.emit(payload)
-
-    if event == "chirp":
-        EventBus.chirp_received.emit(payload)
+        on_message_received.emit(payload)

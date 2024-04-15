@@ -1,74 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cih5u7otcoipp"]
+[gd_scene load_steps=3 format=3 uid="uid://cih5u7otcoipp"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_bvyaq"]
-[ext_resource type="Script" path="res://Radio.gd" id="2_408v3"]
-[ext_resource type="Texture2D" uid="uid://lydc5hcwvc15" path="res://assets/sprites/radio.png" id="3_ssi8e"]
-[ext_resource type="PackedScene" uid="uid://dpg2pfa576gcy" path="res://radios/components/OnOffSwitch.tscn" id="4_ilmgj"]
-[ext_resource type="Script" path="res://MessageHandler.gd" id="4_l1r83"]
-[ext_resource type="PackedScene" uid="uid://bau676w3q5v33" path="res://radios/components/ChannelSelectSpinner.tscn" id="4_lyi83"]
-[ext_resource type="Script" path="res://Debug.gd" id="5_uurl5"]
-[ext_resource type="Theme" uid="uid://oedsc6r2ytcs" path="res://default_theme.tres" id="6_nrtnr"]
-[ext_resource type="PackedScene" uid="uid://wfbecgj828c6" path="res://radios/components/PowerIndicator.tscn" id="6_r3ro0"]
-[ext_resource type="PackedScene" uid="uid://cyn3svh6rbcww" path="res://radios/components/SpeechBubble.tscn" id="7_2xp60"]
-[ext_resource type="Script" path="res://Line2D.gd" id="8_eo8pe"]
+[ext_resource type="PackedScene" uid="uid://bauvfgt1txd4g" path="res://Radio.tscn" id="2_bema1"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bvyaq")
 
-[node name="Radio" type="Node2D" parent="."]
-script = ExtResource("2_408v3")
-default_channel = null
-
-[node name="ChannelSelectSpinner" parent="Radio" instance=ExtResource("4_lyi83")]
-position = Vector2(258, 256)
-
-[node name="Sprite" type="Sprite2D" parent="Radio"]
-texture = ExtResource("3_ssi8e")
-centered = false
-
-[node name="OnOffSwitch" parent="Radio" instance=ExtResource("4_ilmgj")]
-position = Vector2(126, 400)
-
-[node name="PowerIndicator" parent="Radio" instance=ExtResource("6_r3ro0")]
-position = Vector2(202, 400)
-
-[node name="SpeechBubble" parent="Radio" instance=ExtResource("7_2xp60")]
-position = Vector2(155, 159)
-
-[node name="MessageHandler" type="Node2D" parent="."]
-script = ExtResource("4_l1r83")
-socket_io_server = null
-
-[node name="ConnectionPing" type="Timer" parent="MessageHandler"]
-wait_time = 5.0
-autostart = true
-
-[node name="Debug" type="Node2D" parent="."]
-script = ExtResource("5_uurl5")
-
-[node name="TextEdit" type="TextEdit" parent="Debug"]
-offset_left = 84.0
-offset_top = 416.0
-offset_right = 206.0
-offset_bottom = 562.0
-theme = ExtResource("6_nrtnr")
-placeholder_text = "message"
-wrap_mode = 1
-
-[node name="Button" type="Button" parent="Debug"]
-visible = false
-offset_left = 43.0
-offset_top = 126.0
-offset_right = 62.0
-offset_bottom = 144.0
-
-[node name="Line2D" type="Line2D" parent="Debug"]
-visible = false
-points = PackedVector2Array(2.08165e-12, 2.08165e-12, 67, 103)
-width = 2.0
-sharp_limit = 100.0
-antialiased = true
-script = ExtResource("8_eo8pe")
-
-[connection signal="state_changed" from="Radio/OnOffSwitch" to="Radio" method="_on_on_off_switch_state_changed"]
-[connection signal="pressed" from="Debug/Button" to="Debug" method="_on_button_pressed"]
+[node name="Radio" parent="." instance=ExtResource("2_bema1")]

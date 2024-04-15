@@ -1,5 +1,7 @@
 extends Node2D
 
+signal on_channel_changed(channel: String)
+
 @export var channels: Array = [
     "446.00625",
     "446.01875",
@@ -17,27 +19,7 @@ extends Node2D
 
 
 func _ready():
-    EventBus.message_handler_ready.connect(func(): change_channel(selected_channel, false))
-    update_configuration_warnings()
-
-
-func change_channel(channel: int, play_sound: bool = true):
-    if channel < 0 or channel >= channels.size():
-        return
-    selected_channel = channel
-    $Sprite2D.rotation_degrees = -(channel * 44.5)
-    EventBus.channel_change.emit(channels[selected_channel])
-
-    if play_sound:
-        (
-            AudioEmitter
-            . play_sound(
-                [
-                    "radio_wheel_click_001",
-                    "radio_wheel_click_003",
-                ]
-            )
-        )
+    on_channel_changed.emit(channels[selected_channel])
 
 
 func _input(event):
@@ -53,6 +35,25 @@ func _input(event):
                 or event.button_index == MOUSE_BUTTON_RIGHT
             ):
                 change_channel(selected_channel - 1)
+
+
+func change_channel(channel: int, play_sound: bool = true):
+    if channel < 0 or channel >= channels.size():
+        return
+    selected_channel = channel
+    $Sprite2D.rotation_degrees = -(channel * 44.5)
+    on_channel_changed.emit(channels[selected_channel])
+
+    if play_sound:
+        (
+            AudioEmitter
+            . play_sound(
+                [
+                    "radio_wheel_click_001",
+                    "radio_wheel_click_003",
+                ]
+            )
+        )
 
 
 func _on_mouse_entered():

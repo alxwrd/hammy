@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0hb08ieagngy"]
+
+[ext_resource type="Script" path="res://MessageHandler.gd" id="1_p8svl"]
+
+[node name="MessageHandler" type="Node2D"]
+script = ExtResource("1_p8svl")
+socket_io_server = null
+
+[node name="ConnectionPing" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

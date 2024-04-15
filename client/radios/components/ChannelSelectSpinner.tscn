@@ -8,7 +8,6 @@ size = Vector2(30, 52)
 
 [node name="ChannelSelectSpinner" type="Node2D"]
 script = ExtResource("1_umj5w")
-channels = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_l7001")

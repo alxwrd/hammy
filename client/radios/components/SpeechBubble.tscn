@@ -8,15 +8,15 @@
 script = ExtResource("1_kmgpy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 23)
+position = Vector2(3, -70)
 scale = Vector2(0.603896, 0.581818)
 texture = ExtResource("2_6retp")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -67.0
-offset_top = -27.0
-offset_right = 66.0
-offset_bottom = 21.0
+offset_left = -66.0
+offset_top = -117.0
+offset_right = 67.0
+offset_bottom = -69.0
 theme = ExtResource("3_7vhu5")
 text = "test"
 horizontal_alignment = 1

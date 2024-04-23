@@ -8,6 +8,8 @@ enum PowerState { ON, OFF }
         return power_state
     set(value):
         power_state = value
+        if not is_inside_tree():
+            return
         match value:
             PowerState.ON:
                 on_off_switch.on()
@@ -19,13 +21,14 @@ enum PowerState { ON, OFF }
 @onready var sprite = $Sprite
 @onready var on_off_switch = $OnOffSwitch
 @onready var power_indicator = $PowerIndicator
-@onready var speech_bubble = $SpeechBubble
 @onready var message_handler = $MessageHandler
+@onready var speech_bubble = preload("res://radios/components/SpeechBubble.tscn")
 
 
 func _on_message_send(message):
     if power_state == PowerState.OFF:
         return
+
     message_handler.send_message(message)
     AudioEmitter.play_sound("radio_talk_button_release")
 
@@ -33,7 +36,12 @@ func _on_message_send(message):
 func _on_message_received(message):
     if power_state == PowerState.OFF:
         return
-    speech_bubble.display_message(message)
+
+    var bubble = speech_bubble.instantiate()
+    bubble.message = message
+    bubble.position = Vector2(145, 251)
+    add_child(bubble)
+
     AudioEmitter.message_received()
 
 

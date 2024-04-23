@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bauvfgt1txd4g"]
+[gd_scene load_steps=10 format=3 uid="uid://bauvfgt1txd4g"]
 
 [ext_resource type="Script" path="res://Radio.gd" id="1_ju2j7"]
 [ext_resource type="Texture2D" uid="uid://lydc5hcwvc15" path="res://assets/sprites/radio.png" id="2_5jx3v"]
 [ext_resource type="PackedScene" uid="uid://bau676w3q5v33" path="res://radios/components/ChannelSelectSpinner.tscn" id="2_nb7sk"]
 [ext_resource type="PackedScene" uid="uid://dpg2pfa576gcy" path="res://radios/components/OnOffSwitch.tscn" id="4_otuyt"]
 [ext_resource type="PackedScene" uid="uid://wfbecgj828c6" path="res://radios/components/PowerIndicator.tscn" id="5_ed2io"]
-[ext_resource type="PackedScene" uid="uid://cyn3svh6rbcww" path="res://radios/components/SpeechBubble.tscn" id="6_ycqs6"]
 [ext_resource type="PackedScene" uid="uid://c0hb08ieagngy" path="res://MessageHandler.tscn" id="7_1x8ik"]
 [ext_resource type="Script" path="res://Debug.gd" id="8_4qq11"]
 [ext_resource type="Theme" uid="uid://oedsc6r2ytcs" path="res://default_theme.tres" id="9_p6yyv"]
@@ -13,8 +12,6 @@
 
 [node name="Radio" type="Node2D"]
 script = ExtResource("1_ju2j7")
-default_channel = null
-power_state = null
 
 [node name="ChannelSelectSpinner" parent="." instance=ExtResource("2_nb7sk")]
 position = Vector2(258, 256)
@@ -28,10 +25,6 @@ position = Vector2(126, 400)
 
 [node name="PowerIndicator" parent="." instance=ExtResource("5_ed2io")]
 position = Vector2(201, 400)
-
-[node name="SpeechBubble" parent="." instance=ExtResource("6_ycqs6")]
-visible = false
-position = Vector2(155, 159)
 
 [node name="MessageHandler" parent="." instance=ExtResource("7_1x8ik")]
 

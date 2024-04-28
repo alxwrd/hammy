@@ -52,7 +52,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="PaddingRight" type="Control" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 2.08165e-12)
+custom_minimum_size = Vector2(15, 2.08165e-12)
 layout_mode = 2
 
 [node name="PaddingBottom" type="Control" parent="VBoxContainer"]

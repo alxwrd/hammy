@@ -48,6 +48,20 @@ sharp_limit = 100.0
 antialiased = true
 script = ExtResource("10_regc2")
 
+[node name="MessageContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 179.0
+offset_right = 178.0
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [connection signal="on_channel_changed" from="ChannelSelectSpinner" to="." method="_on_channel_changed"]
 [connection signal="state_changed" from="OnOffSwitch" to="." method="_on_on_off_switch_state_changed"]
 [connection signal="on_message_received" from="MessageHandler" to="." method="_on_message_received"]

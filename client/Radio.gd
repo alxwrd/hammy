@@ -2,6 +2,7 @@ extends Node2D
 
 enum PowerState { ON, OFF }
 
+@export var speech_spawn_point: Marker2D
 @export var default_channel = "144.0"
 @export var power_state: PowerState = PowerState.ON:
     get:
@@ -22,6 +23,7 @@ enum PowerState { ON, OFF }
 @onready var on_off_switch = $OnOffSwitch
 @onready var power_indicator = $PowerIndicator
 @onready var message_handler = $MessageHandler
+@onready var message_container = %MessageContainer
 @onready var speech_bubble = preload("res://radios/components/SpeechBubble.tscn")
 
 
@@ -38,9 +40,8 @@ func _on_message_received(message):
         return
 
     var bubble = speech_bubble.instantiate()
-    bubble.message = message
-    bubble.position = Vector2(145, 251)
-    add_child(bubble)
+    message_container.add_child(bubble)
+    bubble.set_message(message)
 
     AudioEmitter.message_received()
 

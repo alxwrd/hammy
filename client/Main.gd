@@ -1,6 +1,5 @@
 extends Node2D
 
-var client = SocketIOClient
 var dragging = false
 var mouse_start = Vector2()
 

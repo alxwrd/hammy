@@ -62,6 +62,11 @@ offset_bottom = 189.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="ClickableArea" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+visible = false
+polygon = PackedVector2Array(76, 203, 85, 195, 241, 195, 239, 2, 251, 2, 252, 195, 262, 195, 271, 202, 271, 231, 285, 238, 285, 271, 274, 281, 272, 616, 260, 629, 91, 629, 76, 618)
+
 [connection signal="on_channel_changed" from="ChannelSelectSpinner" to="." method="_on_channel_changed"]
 [connection signal="state_changed" from="OnOffSwitch" to="." method="_on_on_off_switch_state_changed"]
 [connection signal="on_message_received" from="MessageHandler" to="." method="_on_message_received"]

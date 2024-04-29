@@ -27,6 +27,10 @@ enum PowerState { ON, OFF }
 @onready var speech_bubble = preload("res://radios/components/SpeechBubble.tscn")
 
 
+func _ready():
+    DisplayServer.window_set_mouse_passthrough(%ClickableArea.polygon)
+
+
 func _on_message_send(message):
     if power_state == PowerState.OFF:
         return

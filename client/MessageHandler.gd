@@ -4,9 +4,19 @@ signal on_message_handler_ready
 signal on_disconnect
 signal on_channel_changed(channel: String)
 signal on_message_delivered(message: String)
-signal on_message_received(message: String)
+signal on_message_received(message: Message)
 
 enum State { CONNECTING, CONNECTED, DISCONNECTED }
+
+
+class Message:
+    var message: String
+    var from: String
+
+    func _init(text: String, user: String):
+        message = text
+        from = user
+
 
 @export var socket_io_server: String = "https://hammy.fly.dev/socket.io"
 
@@ -24,7 +34,7 @@ func _ready():
 func send_message(message: String):
     # TODO: Implement message buffer
     print("[sending] event:message, data:'%s'" % message)
-    client.socketio_send("message", message)
+    client.socketio_send("message", {"message": message, "from": "user"})
     on_message_delivered.emit(message)
 
 
@@ -76,4 +86,4 @@ func _on_socket_event(event: String, payload: Variant, _name_space):
     print("[receiving] event:%s, data:'%s'" % [event, payload])
 
     if event == "message":
-        on_message_received.emit(payload)
+        on_message_received.emit(Message.new(payload["message"], payload["from"]))

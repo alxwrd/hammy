@@ -45,7 +45,7 @@ func _on_message_received(message):
 
     var bubble = speech_bubble.instantiate()
     message_container.add_child(bubble)
-    bubble.set_message(message)
+    bubble.set_message(message.message, message.from)
 
     AudioEmitter.message_received()
 

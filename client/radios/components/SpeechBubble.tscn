@@ -31,18 +31,36 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="PaddingTop" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 15)
+custom_minimum_size = Vector2(2.08165e-12, 5)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="UserContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PaddingLeft" type="Control" parent="VBoxContainer/UserContainer"]
+custom_minimum_size = Vector2(5, 2.08165e-12)
+layout_mode = 2
+
+[node name="UserLabel" type="Label" parent="VBoxContainer/UserContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 2.08165e-12)
+layout_mode = 2
+theme = ExtResource("3_7vhu5")
+theme_override_colors/font_color = Color(0.0117647, 0.737255, 0.454902, 1)
+theme_override_colors/font_outline_color = Color(0.0117647, 0.737255, 0.454902, 1)
+theme_override_font_sizes/font_size = 12
+text = "fatman"
+autowrap_mode = 3
+
+[node name="MessageContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="PaddingLeft" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="PaddingLeft" type="Control" parent="VBoxContainer/MessageContainer"]
 custom_minimum_size = Vector2(15, 2.08165e-12)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="MessageLabel" type="Label" parent="VBoxContainer/MessageContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(152, 2.08165e-12)
 layout_mode = 2
@@ -51,7 +69,7 @@ text = "fadsfdsa"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PaddingRight" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="PaddingRight" type="Control" parent="VBoxContainer/MessageContainer"]
 custom_minimum_size = Vector2(15, 2.08165e-12)
 layout_mode = 2
 

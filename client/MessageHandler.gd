@@ -31,10 +31,10 @@ func _ready():
     $ConnectionPing.timeout.connect(_on_connection_ping_timeout)
 
 
-func send_message(message: String):
+func send_message(message: String, user: String):
     # TODO: Implement message buffer
     print("[sending] event:message, data:'%s'" % message)
-    client.socketio_send("message", {"message": message, "from": "user"})
+    client.socketio_send("message", {"message": message, "from": user})
     on_message_delivered.emit(message)
 
 

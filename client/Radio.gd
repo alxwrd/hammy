@@ -24,6 +24,7 @@ enum PowerState { ON, OFF }
 @onready var power_indicator = $PowerIndicator
 @onready var message_handler = $MessageHandler
 @onready var message_container = %MessageContainer
+@onready var user = %UserName
 @onready var speech_bubble = preload("res://radios/components/SpeechBubble.tscn")
 
 
@@ -35,7 +36,7 @@ func _on_message_send(message):
     if power_state == PowerState.OFF:
         return
 
-    message_handler.send_message(message)
+    message_handler.send_message(message, user.username)
     AudioEmitter.play_sound("radio_talk_button_release")
 
 

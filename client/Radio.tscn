@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bauvfgt1txd4g"]
+[gd_scene load_steps=11 format=3 uid="uid://bauvfgt1txd4g"]
 
 [ext_resource type="Script" path="res://Radio.gd" id="1_ju2j7"]
 [ext_resource type="Texture2D" uid="uid://lydc5hcwvc15" path="res://assets/sprites/radio.png" id="2_5jx3v"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0hb08ieagngy" path="res://MessageHandler.tscn" id="7_1x8ik"]
 [ext_resource type="Script" path="res://Debug.gd" id="8_4qq11"]
 [ext_resource type="Theme" uid="uid://oedsc6r2ytcs" path="res://default_theme.tres" id="9_p6yyv"]
+[ext_resource type="PackedScene" uid="uid://ckksufgjxf0yj" path="res://radios/components/UserName.tscn" id="10_d704u"]
 [ext_resource type="Script" path="res://Line2D.gd" id="10_regc2"]
 
 [node name="Radio" type="Node2D"]
@@ -35,7 +36,7 @@ script = ExtResource("8_4qq11")
 offset_left = 84.0
 offset_top = 416.0
 offset_right = 206.0
-offset_bottom = 562.0
+offset_bottom = 512.0
 theme = ExtResource("9_p6yyv")
 placeholder_text = "message"
 wrap_mode = 1
@@ -66,6 +67,11 @@ grow_vertical = 0
 unique_name_in_owner = true
 visible = false
 polygon = PackedVector2Array(76, 203, 85, 195, 241, 195, 239, 2, 251, 2, 252, 195, 262, 195, 271, 202, 271, 231, 285, 238, 285, 271, 274, 281, 272, 616, 260, 629, 91, 629, 76, 618)
+
+[node name="UserName" parent="." instance=ExtResource("10_d704u")]
+unique_name_in_owner = true
+position = Vector2(93, 539)
+rotation = 0.21293
 
 [connection signal="on_channel_changed" from="ChannelSelectSpinner" to="." method="_on_channel_changed"]
 [connection signal="state_changed" from="OnOffSwitch" to="." method="_on_on_off_switch_state_changed"]

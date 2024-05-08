@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckksufgjxf0yj"]
+
+[ext_resource type="Script" path="res://radios/components/UserName.gd" id="1_f8hep"]
+[ext_resource type="Texture2D" uid="uid://qubb1svh05kg" path="res://assets/sprites/white-tape.png" id="2_dgqf6"]
+[ext_resource type="FontFile" uid="uid://c3rxt6xsjprmf" path="res://assets/fonts/lazy_dog.ttf" id="2_ljk8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5yfcm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63hpy"]
+
+[node name="UserName" type="Node2D"]
+script = ExtResource("1_f8hep")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_dgqf6")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sprite2D"]
+offset_left = 3.33333
+offset_top = 20.0
+offset_right = 490.333
+offset_bottom = 123.0
+
+[node name="Input" type="LineEdit" parent="Sprite2D/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(2.08165e-12, 110)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0.172549, 0.92549)
+theme_override_fonts/font = ExtResource("2_ljk8v")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5yfcm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_63hpy")
+alignment = 1
+max_length = 6
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+flat = true
+caret_blink = true
+
+[connection signal="text_changed" from="Sprite2D/VBoxContainer/Input" to="." method="_on_input_text_changed"]

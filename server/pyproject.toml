@@ -7,14 +7,19 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-python-socketio = {extras = ["client"], version = "^5.11.2"}
+python-socketio = {extras = ["client"], version = "^5.14.0"}
 uvicorn = "^0.29.0"
-gunicorn = "^21.2.0"
-fastapi = "^0.110.1"
+gunicorn = "^22.0.0"
+fastapi = "^0.139.2"
+idna = ">=3.7"
+certifi = ">=2024.7.4"
+requests = ">=2.32.0"
+urllib3 = ">=2.2.2,<3"
+h11 = ">=0.16.0"
 
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.1.1"
+pytest = "^9.0.3"
 
 [build-system]
 requires = ["poetry-core"]
